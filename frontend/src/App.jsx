@@ -10,15 +10,42 @@ function App() {
   const [planData, setPlanData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/plans');
-        setPlanData(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+    const mockData = {
+      monthlyPlans: [
+        {
+          month: "March",
+          targetReturn: 24.0,
+          targetAmount: 1000.0,
+          currentAmount: 30.0,
+          currentReturn: 0.0,
+          startDate: "2024-03-01",
+          endDate: "2024-03-31",
+          specialTargets: "需要连续17次操作不失误"
+        },
+        {
+          month: "April",
+          targetReturn: 12.0,
+          targetAmount: 30000.0,
+          currentAmount: 1000.0,
+          currentReturn: 0.0,
+          startDate: "2024-04-01",
+          endDate: "2024-04-30"
+        },
+        {
+          month: "May",
+          targetReturn: 6.0,
+          targetAmount: 182000.0,
+          currentAmount: 30000.0,
+          currentReturn: 0.0,
+          startDate: "2024-05-01",
+          endDate: "2024-05-31"
+        }
+      ],
+      overallGoal: 3000000.0,
+      startAmount: 30.0,
+      endDate: "2024-09-03"
     };
-    fetchData();
+    setPlanData(mockData);
   }, []);
 
   if (!planData) return <div>加载中...</div>;
